@@ -12,22 +12,26 @@ function Khatian_search() {
     const selectedSubdivision = watch("subdivision")
     const selectedRevenueCircle = watch("revenueCircle")
     const selectedTehsil = watch("tehsil");
-    console.log("District:", selectedDistrict);
-console.log("Subdivision:", selectedSubdivision);
-console.log("Revenue Circle:", selectedRevenueCircle);
-
-console.log(
-  tripuraData?.[selectedDistrict]?.[selectedSubdivision]
-);
-
-console.log(
-  tripuraData?.[selectedDistrict]
-             ?. [selectedSubdivision]
-             ?. [selectedRevenueCircle]
-);
-
+    const selectedInput = watch("inputType")
+    const searchby = [
+        {
+            id:1,
+            name:"Khatian No.",
+            placevalue:"Search by Khatian Number"
+        },
+        {
+            id:2,
+            name:"Plot No.",
+            placevalue:"Search by Plot Number"
+        },
+        {
+            id:3,
+            name:"Name",
+            placevalue:"Search by Name"
+        },
+    ]
     const submitHandler = (data)=>{
-        console.log("Ye raha data")
+        console.log("Ye raha data",data)
     }
   return (
     <div className=''>
@@ -140,7 +144,38 @@ console.log(
                     </select>
                 </div>
             </div>
-            <div>
+            {/* <div>
+                <div>
+                    <label htmlFor="mouja" className='text-white font-semibold p-2'>Search By:</label>
+                    <select
+                    name="inputType" 
+                    id="inputType"
+                    {...register('inputType',{required:true})}
+
+                    >
+                        <option value="" >Search By</option>
+                        {
+                            searchby.map((element)=>(
+                                <option key={element?.id}>{element?.name}</option>
+                            ))
+                        }
+                    </select>
+                </div>
+                <div>
+                    
+                        <input
+                            type='text'
+                            value="inputText"
+                            id='inputText'
+                            placeholder="Enter Details"
+                            {...register}
+                        ></input>
+
+                    
+                    <input></input>
+                </div>
+            </div> */}
+            <div className='bg-yellow-100 text-black font-bold text-md w-fit py-1 px-4 ml-10 mt-10 rounded-md'>
                 <button type='submit'>Submit</button>
             </div>
         </form>
