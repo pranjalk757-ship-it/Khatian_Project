@@ -179,7 +179,7 @@ function Khatian_search() {
 
                 </div>
             </div>
-            <div className='bg-blue-600 text-white text-black font-bold text-md w-fit py-1 px-4 ml-10 mt-10 rounded-md'>
+            <div className='bg-caribbeangreen-200 text-white font-bold text-md w-fit py-1 px-4 ml-10 mt-10 rounded-md'>
                 <button type='submit'>Submit</button>
             </div>
         </form>
