@@ -9,12 +9,12 @@ function SidebarLinks({element}) {
     }
   return (
     <Link to={element.path}>
-        <div className='relative h-10 bg-white flex flex-row my-2 items-center' >
+        <div className='relative h-10 bg-richblue-200 flex flex-row my-2 items-center' >
             {
                 matchRoute(element.path) &&
                 <span className='h-10 w-2 bg-pink-300 absolute'></span>
             }
-            <div className='text-md font-bold pl-4'>{element.name}</div>
+            <div className='text-md font-bold pl-4 text-white'>{element.name}</div>
 
         </div>
     </Link>

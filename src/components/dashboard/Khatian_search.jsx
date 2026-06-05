@@ -36,7 +36,7 @@ function Khatian_search() {
   return (
     <div className=''>
         <form onSubmit={handleSubmit(submitHandler)}>
-            <div className='grid grid-cols-3 bg-richblack-900  ml-10 mt-20 py-10 px-10 gap-y-20'>
+            <div className='grid grid-cols-3 bg-richblue-100  ml-10 mt-20 py-10 px-10 gap-y-20'>
 
                 <div className=''>
                     <label htmlFor="district" className='text-white font-semibold p-2'>District:</label>
@@ -144,38 +144,42 @@ function Khatian_search() {
                     </select>
                 </div>
             </div>
-            {/* <div>
-                <div>
-                    <label htmlFor="mouja" className='text-white font-semibold p-2'>Search By:</label>
-                    <select
-                    name="inputType" 
+            <div className='bg-richblue-100 flex flex-col items-center ml-10  p-10 mt-10'>
+             <div className=''>
+                <label htmlFor="inputType" className="text-white font-semibold p-2">
+                    Search By:
+                </label>
+
+                <select
                     id="inputType"
-                    {...register('inputType',{required:true})}
+                    {...register("inputType", { required: true })}
+                >
+                    <option value="">Search By</option>
 
-                    >
-                        <option value="" >Search By</option>
-                        {
-                            searchby.map((element)=>(
-                                <option key={element?.id}>{element?.name}</option>
-                            ))
-                        }
-                    </select>
-                </div>
-                <div>
-                    
-                        <input
-                            type='text'
-                            value="inputText"
-                            id='inputText'
-                            placeholder="Enter Details"
-                            {...register}
-                        ></input>
+                    {searchby.map((element) => (
+                        <option
+                            key={element.id}
+                            value={element.name}
+                        >
+                            {element.name}
+                        </option>
+                    ))}
+                </select>
+            </div>
 
-                    
-                    <input></input>
+                <div className='p-5 flex flex-col  items-center'>
+                    <label htmlFor="inputText" className='font-bold text-white'>Enter Detail </label>
+                    <input
+                        type="text"
+                        id="inputText"
+                        placeholder="Enter Details"
+                        {...register("inputText", { required: true })}
+                        className='py-1 mt-2 rounded-md px-4'
+                    />
+
                 </div>
-            </div> */}
-            <div className='bg-yellow-100 text-black font-bold text-md w-fit py-1 px-4 ml-10 mt-10 rounded-md'>
+            </div>
+            <div className='bg-blue-600 text-white text-black font-bold text-md w-fit py-1 px-4 ml-10 mt-10 rounded-md'>
                 <button type='submit'>Submit</button>
             </div>
         </form>
