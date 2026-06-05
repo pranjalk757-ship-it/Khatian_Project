@@ -57,8 +57,13 @@ function Sidebar() {
         },
         {
             id: 7,
-            name: "User Registration",
-            path: "/dashboard/user-registration",
+            name: "User Registration/Login",
+            path: "/login",
+        },
+        {
+            id: 8,
+            name: "Payment",
+            path: "/dashboard/payment",
         },
     ]
 
