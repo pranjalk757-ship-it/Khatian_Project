@@ -6,6 +6,15 @@ module.exports = {
   ],
   theme: {
     colors: {
+      
+      'ufo-green': '#42CD62',
+      'mountain-meadow': '#35BC98',
+      'gamboge': '#F09E00',
+      'carmine-pink': '#E74C3C',
+      'electric-indigo': '#6366F1',
+      'neon-cyan': '#00D2FF',
+      'cyber-pink': '#F43F5E',
+
       white: "#fff",
       black: "#000",
       transparent: "#ffffff00",
