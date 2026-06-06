@@ -48,9 +48,9 @@ const AvailableServices = () => {
     ]
   return (
     <>
-        <div className='p-3'>
+        <div className='p-2'>
             <h6 className='text-xl font-medium text-gray-800'>Available Services:</h6>
-            <div className='my-5 mx-10 flex gap-5 flex-wrap'>  
+            <div className='my-4 mx-4 flex gap-4 flex-wrap'>  
 
                 {servicesData.map((service) =>(
                     <ServiceCard 

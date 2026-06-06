@@ -5,12 +5,64 @@ function Login() {
   const [isLogin, setIsLogin] = useState(true);
   const navigate = useNavigate();
 
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+
+  const [signUpData, setSignUpData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    gender: ''
+  });
+
+  const handleSignUpChange = (e) => {
+    let newSignUpData = {...signUpData}
+    newSignUpData[e.target.name] = e.target.value
+    setSignUpData(newSignUpData)
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(isLogin){
-        navigate('/dashboard');
-    }else{
-        navigate('/login');
+    
+    if (isLogin) {
+      const storedUser = localStorage.getItem(loginEmail);
+
+      if (!storedUser) {
+        alert("Account does not exist. Please Sign Up.");
+        return;
+      }
+
+      const userData = JSON.parse(storedUser);
+
+      if (userData.password === loginPassword) {
+        navigate('/dashboard/services');
+      } else {
+        alert("Incorrect password. Please try again.");
+      }
+
+    } else {
+      if (!signUpData.email || !signUpData.password || !signUpData.firstName) {
+        alert("Please fill in the required fields.");
+        return;
+      }
+
+      if (signUpData.password !== signUpData.confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      if (localStorage.getItem(signUpData.email)) {
+        alert("An account with this email already exists.");
+        return;
+      }
+
+      localStorage.setItem(signUpData.email, JSON.stringify(signUpData));
+      alert("Registration successful! You can now log in.");
+      
+      setSignUpData({ firstName: '', lastName: '', email: '', password: '', confirmPassword: '', gender: '' });
+      setIsLogin(true);
     }
   };
 
@@ -40,11 +92,17 @@ function Login() {
               <input 
                 type="email" 
                 placeholder="Email Address" 
+                value={loginEmail}
+                onChange={(e) => setLoginEmail(e.target.value)}
+                required
                 className="p-[10px] mb-[10px] border border-[#ddd] rounded-[5px] focus:outline-none focus:border-[#033452] focus:shadow-[0_0_5px_rgba(3,52,82,0.3)] transition-all duration-200"
               />
               <input 
                 type="password" 
                 placeholder="Password" 
+                value={loginPassword}
+                onChange={(e) => setLoginPassword(e.target.value)}
+                required
                 className="p-[10px] mb-[10px] border border-[#ddd] rounded-[5px] focus:outline-none focus:border-[#033452] focus:shadow-[0_0_5px_rgba(3,52,82,0.3)] transition-all duration-200"
               />
               <a href="#" className="color-[#08172f] no-underline mb-10 text-right">Forgot Password?</a>
@@ -63,7 +121,10 @@ function Login() {
                 <div className="flex flex-col">
                   <input 
                     type="text" 
+                    name="firstName"
                     placeholder="First Name" 
+                    value={signUpData.firstName}
+                    onChange={handleSignUpChange}
                     className="w-full p-[10px] border border-[#ddd] rounded-[5px] box-border transition-all duration-200 focus:outline-none focus:border-[#033452] focus:shadow-[0_0_5px_rgba(3,52,82,0.3)]"
                   />
                 </div>
@@ -71,7 +132,10 @@ function Login() {
                 <div className="flex flex-col">
                   <input 
                     type="text" 
+                    name="lastName"
                     placeholder="Last Name" 
+                    value={signUpData.lastName}
+                    onChange={handleSignUpChange}
                     className="w-full p-[10px] border border-[#ddd] rounded-[5px] box-border transition-all duration-200 focus:outline-none focus:border-[#033452] focus:shadow-[0_0_5px_rgba(3,52,82,0.3)]"
                   />
                 </div>
@@ -79,7 +143,10 @@ function Login() {
                 <div className="flex flex-col">
                   <input 
                     type="email" 
+                    name="email"
                     placeholder="Email Address" 
+                    value={signUpData.email}
+                    onChange={handleSignUpChange}
                     className="w-full p-[10px] border border-[#ddd] rounded-[5px] box-border transition-all duration-200 focus:outline-none focus:border-[#033452] focus:shadow-[0_0_5px_rgba(3,52,82,0.3)]"
                   />
                 </div>
@@ -87,7 +154,10 @@ function Login() {
                 <div className="flex flex-col">
                   <input 
                     type="password" 
+                    name="password"
                     placeholder="Password" 
+                    value={signUpData.password}
+                    onChange={handleSignUpChange}
                     className="w-full p-[10px] border border-[#ddd] rounded-[5px] box-border transition-all duration-200 focus:outline-none focus:border-[#033452] focus:shadow-[0_0_5px_rgba(3,52,82,0.3)]"
                   />
                 </div>
@@ -95,13 +165,21 @@ function Login() {
                 <div className="flex flex-col">
                   <input 
                     type="password" 
+                    name="confirmPassword"
                     placeholder="Confirm Password" 
+                    value={signUpData.confirmPassword}
+                    onChange={handleSignUpChange}
                     className="w-full p-[10px] border border-[#ddd] rounded-[5px] box-border transition-all duration-200 focus:outline-none focus:border-[#033452] focus:shadow-[0_0_5px_rgba(3,52,82,0.3)]"
                   />
                 </div>
 
                 <div className="flex flex-col">
-                  <select className="w-full p-[10px] border border-[#ddd] rounded-[5px] box-border transition-all duration-200 bg-white focus:outline-none focus:border-[#033452] focus:shadow-[0_0_5px_rgba(3,52,82,0.3)]">
+                  <select 
+                    name="gender"
+                    value={signUpData.gender}
+                    onChange={handleSignUpChange}
+                    className="w-full p-[10px] border border-[#ddd] rounded-[5px] box-border transition-all duration-200 bg-white focus:outline-none focus:border-[#033452] focus:shadow-[0_0_5px_rgba(3,52,82,0.3)]"
+                  >
                     <option value="">Select Gender</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>

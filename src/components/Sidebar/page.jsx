@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, matchPath, useLocation } from 'react-router-dom'
 
-// Internal Component: SidebarLinks
+
 function SidebarLinks({ element }) {
     const location = useLocation();
     
@@ -22,7 +22,7 @@ function SidebarLinks({ element }) {
     )
 }
 
-// Main Component: Sidebar
+
 function Sidebar() {
     const sideLinks = [
         {
@@ -37,7 +37,7 @@ function Sidebar() {
         },
         {
             id: 3,
-            name: "Loing/ Sign up",
+            name: "Login/ Sign up",
             path: "/login",
         },
     ]
