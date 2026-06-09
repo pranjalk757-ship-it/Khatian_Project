@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import tripuraData from '../../data'
+import CitizenDetails from './citizen-details/page';
 function Khatian_search() {
     const {register,setValue,getValues,watch,formState:{errors},handleSubmit} = useForm();
     const [district,setDistrict] = useState("");
@@ -35,6 +36,9 @@ function Khatian_search() {
     }
   return (
     <div className=''>
+        <div>
+            <CitizenDetails />
+        </div>
         <form onSubmit={handleSubmit(submitHandler)}>
             <div className='grid grid-cols-3 bg-richblue-100  ml-10 mt-20 py-10 px-10 gap-y-20'>
 

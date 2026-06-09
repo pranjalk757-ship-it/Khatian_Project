@@ -14,6 +14,7 @@ module.exports = {
       'electric-indigo': '#6366F1',
       'neon-cyan': '#00D2FF',
       'cyber-pink': '#F43F5E',
+      'steal-blue': '#428BCA',
 
       white: "#fff",
       black: "#000",
