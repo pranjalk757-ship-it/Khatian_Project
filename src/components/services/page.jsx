@@ -8,8 +8,8 @@ const AvailableServices = () => {
             id:1,
             color1:'bg-neon-cyan',
             color2:'hover:bg-neon-cyan',
-            title:'Search by Khatian',
-            description:'Search by khatian',
+            title:'Certified copy of Surveyed Khatian',
+            description:'Certified copy of first revision of Surveyed Khatian ',
             path:'/dashboard/khatian-search'
         },
         {

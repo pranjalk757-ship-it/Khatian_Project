@@ -9,10 +9,11 @@ import Khatian_search from './components/khatian-search/page'
 import Payment from './components/payment/page'
 import Login from './components/login/page'
 import AvailableServices from './components/services/page'
-
+import {Toaster} from "react-hot-toast"
 function App() {
   return (
     <>
+      <Toaster></Toaster>
       <div className="">
         <Routes>
           {/* Completely independent standalone route */}

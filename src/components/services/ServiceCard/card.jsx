@@ -18,7 +18,7 @@ const ServiceCard = ({bgcolor, hovercolor, title, description, path }) => {
               <div className='p-2'>
                   {description}
               </div>
-              <button className='m-1 p-1 h-12 text-blue-200 transition-all transition:500 group-hover:text-white group-hover:border-white text-lg border-[1px] border-black border-solid'
+              <button className='m-1 p-1 h-12 text-blue-200 transition-all transition:500 group-hover:text-richblack-700 group-hover:border-white text-[16px]  border-[1px] border-black border-solid font-bold '
                   onClick={handleApplyClick}
               >
                   Apply
