@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import tripuraData from '../../data'
-import CitizenDetails from './citizen-details/page';
+import tripuraData from '../../Locationdata'
+import CitizenDetails from './citizen-details/citizen';
 import toast from 'react-hot-toast';
 function Khatian_search() {
     const {register,setValue,getValues,watch,formState:{errors},handleSubmit} = useForm();
