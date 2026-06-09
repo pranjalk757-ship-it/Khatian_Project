@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import tripuraData from "../../Locationdata";
 import CitizenDetails from "./citizen-details/citizen";
+import RrevenueDetails from "./revenue-details/card";
 function Khatian_search() {
   const {
     register,
@@ -247,10 +248,13 @@ function Khatian_search() {
             </div>
           </div>
         </div>
-        <div className="bg-caribbeangreen-200 text-white font-bold text-md w-fit py-1 px-4 ml-10 mt-10 rounded-md">
+        {/* <div className="bg-caribbeangreen-200 text-white font-bold text-md w-fit py-1 px-4 ml-10 mt-10 rounded-md">
           <button type="submit">Submit</button>
-        </div>
+        </div> */}
       </form>
+      <div>
+        <RrevenueDetails/>
+      </div>
     </div>
   );
 }

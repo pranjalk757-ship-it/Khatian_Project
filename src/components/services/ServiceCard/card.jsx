@@ -14,7 +14,7 @@ const ServiceCard = ({bgcolor, hovercolor, title, description, path }) => {
   return (
       <div className='flex flex-col justify-between border-[1px] border-solid rounded-xl w-72 h-64 p-3'>
           <div className={`${bgcolor} h-1/4 text-white text-lg font-medium flex justify-center items-center`}>{title}</div>
-          <div className={`flex flex-col group ${hovercolor} transition-all duration-500 justify-between h-3/4`}>
+          <div className={`flex flex-col group ${hovercolor} hover:text-white transition-all duration-500 justify-between h-3/4`}>
               <div className='p-2'>
                   {description}
               </div>
