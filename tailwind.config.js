@@ -15,6 +15,8 @@ module.exports = {
       'neon-cyan': '#00D2FF',
       'cyber-pink': '#F43F5E',
       'steal-blue': '#428BCA',
+      'platinum': '#E5E5E5',
+      'munsell':'#F3F4F5',
 
       white: "#fff",
       black: "#000",
