@@ -22,15 +22,62 @@ function Khatian_search() {
   const [showReveneuDetails, setShowReveneuDetails] = useState(false);
   const [reset, setReset] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
+  const [searchBy, setSearchBy] = useState();
+  const [searchByValue, setSearchByValue] = useState();
+  const [verifiedKhatian, setVarifiedKhatian] = useState();
   const selectedDistrict = watch("district");
   const selectedSubdivision = watch("subdivision");
   const selectedRevenueCircle = watch("revenueCircle");
   const selectedTehsil = watch("tehsil");
   const selectedInput = watch("inputType");
 
-  const verifyHandler = () => {
-    setIsVerified(true);
-    toast.success("Khatian Verified Successfully");
+  const verifyHandler = async () => {
+    var searchkey = "";
+    if (searchBy === "Khatian No.") {
+      searchkey = "khatian";
+    }
+    if (searchBy === "Plot No.") {
+      searchkey = "plot";
+    }
+    if (searchBy === "Name") {
+      searchkey = "owner";
+    }
+    const postData = {
+      search_key: searchkey,
+      search_value: searchByValue,
+      lgd_village_code: "922855",
+    };
+    const response = await fetch(
+      "http://localhost:8080/khatian_services/verify",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      },
+    );
+    const data = await response.json();
+    console.log(data);
+    if (data.success) {
+      setIsVerified(true);
+      setVarifiedKhatian(data.data.khatianNo)
+      console.log(data.data.khatianNo)
+      toast.success("Khatian Verified Successfully");
+    } else {
+      setIsVerified(false);
+      toast.error("Khatian is Not Verified");
+    }
+  };
+  const handleReset = () => {
+    setReset(false);
+    setShowSearch(false);
+    setShowReveneuDetails(false);
+    setDistrict("");
+    setMouja("");
+    setRevenueCircle("");
+    setSubDivision("");
+    setTehsil("");
   };
   const saveHandler = () => {
     if (!isVerified) {
@@ -38,7 +85,16 @@ function Khatian_search() {
     }
     setShowReveneuDetails(true);
   };
-  const searchby = [
+
+  const handleSearchBy = (e) => {
+    var newValue = e.target.value;
+    setSearchBy(newValue);
+  };
+  const handleSearchByValue = (e) => {
+    const newValue = e.target.value;
+    setSearchByValue(newValue);
+  };
+  const searchByOptions = [
     {
       id: 1,
       name: "Khatian No.",
@@ -206,11 +262,7 @@ function Khatian_search() {
           {reset && (
             <div className="flex justify-center">
               <button
-                onClick={() => {
-                  setReset(false);
-                  setShowSearch(false);
-                  setShowReveneuDetails(false);
-                }}
+                onClick={handleReset}
                 className="bg-steal-blue  w-fit px-4 flex flex-row justify-center items-center rounded-md font-bold text-white active:scale-95"
               >
                 RESET
@@ -236,10 +288,10 @@ function Khatian_search() {
                   id="inputType"
                   className="w-fit bg-richblack-25 py-2 m-2 px-4 rounded-md"
                   {...register("inputType", { required: true })}
+                  onChange={handleSearchBy} // Moved below register to overwrite it
                 >
-                  <option value="">Search By</option>
-
-                  {searchby.map((element) => (
+                  <option value="">--select--</option>
+                  {searchByOptions.map((element) => (
                     <option key={element.id} value={element.name}>
                       {element.name}
                     </option>
@@ -252,20 +304,21 @@ function Khatian_search() {
                   htmlFor="inputText"
                   className="text-center font-semibold bg-richblack-600 w-full text-white"
                 >
-                  Khatian Number
+                  Enter {searchBy}
                 </label>
                 <input
                   type="text"
                   id="inputText"
                   placeholder="100, 6/5 , 100/5 etc..."
                   {...register("inputText", { required: true })}
+                  onChange={handleSearchByValue}
                   className="w-fit bg-richblack-25 py-2 m-2 px-4 rounded-md"
                 />
               </div>
 
               <div className="flex flex-col items-center justify-between gap-y-2 border-r-richblack-200 border pb-2">
                 <div className="text-center font-semibold bg-richblack-600 w-full text-white">
-                  Verify Khatian
+                  Verify {searchBy}
                 </div>
                 <button
                   onClick={verifyHandler}
@@ -293,7 +346,7 @@ function Khatian_search() {
           <button type="submit">Submit</button>
         </div> */}
       </form>
-      {showReveneuDetails && <RevenueDetails />}
+      {showReveneuDetails && <RevenueDetails khatianNumber={verifiedKhatian} />}
     </div>
   );
 }

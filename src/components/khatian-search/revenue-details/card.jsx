@@ -1,6 +1,35 @@
 import React from "react";
+import toast from "react-hot-toast";
 
-const RevenueDetails = () => {
+const RevenueDetails = (props) => {
+  const handlePayment = async() => {
+    const paymentData = {
+      Applicationnumber: "APP1234567890",
+      amount: "100.00",
+      paymentMethod: "UPI",
+      paymentDetails: {
+        upiId: "user@bank",
+      },
+    };
+    const response = await fetch(
+      "http://localhost:8080/paymentgateway/pay",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(paymentData),
+      },
+    );
+    const data = await response.json()
+    console.log(data)
+    if(data.status === 'Success'){
+      toast.success("Payment Successfull");
+    }else{
+      toast.error("Payment failed")
+    }
+
+  };
   return (
     <div className="border border-blue-100 rounded-t">
       <h2 className="text-xl font-bold bg-steal-blue px-5 py-2 text-white">
@@ -30,7 +59,7 @@ const RevenueDetails = () => {
             </div>
             <div className="col-span-1 flex flex-col items-center justify-center border-b border-r border-richblack-200">
               <div>
-                <h1>1000</h1>
+                <h1>{props.khatianNumber}</h1>
               </div>
             </div>
             <div className="col-span-2 flex flex-col w-full">
@@ -111,7 +140,10 @@ const RevenueDetails = () => {
         </div>
 
         <div className="flex items-center justify-center m-5">
-          <button className="bg-ufo-green text-white px-3 py-1 rounded">
+          <button
+            className="bg-ufo-green text-white px-3 active:scale-95 py-1 rounded"
+            onClick={handlePayment}
+          >
             Save & Make Payment
           </button>
         </div>
