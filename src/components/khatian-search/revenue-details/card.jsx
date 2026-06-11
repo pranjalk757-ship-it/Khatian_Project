@@ -22,6 +22,7 @@ const RevenueDetails = (props) => {
       },
     );
     const data = await response.json()
+    console.log('Payment api response : ')
     console.log(data)
     if(data.status === 'Success'){
       toast.success("Payment Successfull");
