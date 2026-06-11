@@ -1,71 +1,53 @@
-import React from 'react'
-import ServiceCard from './ServiceCard/card'
-
+import React, { useEffect, useState } from "react";
+import ServiceCard from "./ServiceCard/card";
 
 const AvailableServices = () => {
-    const servicesData = [
+  const [services, setServices] = useState([]);
+  const fetchServices = async () => {
+    try {
+      const postData = { citizen_id: "2823", role_id: "6" };
+      const response = await fetch(
+        "http://localhost:8081/jamipariseva/api/getservices",
         {
-            id:1,
-            color1:'bg-neon-cyan',
-            color2:'hover:bg-neon-cyan',
-            title:'Certified copy of Surveyed Khatian',
-            description:'Certified copy of first revision of Surveyed Khatian ',
-            path:'/dashboard/khatian-search'
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(postData),
         },
-        {
-            id:2,
-            color1:'bg-ufo-green',
-            color2:'hover:bg-ufo-green',
-            title:'Payment of Land Revenue',
-            description:'Online Payment of Land Revenue',
-            path:'disabled'
-        },
-        {
-            id:3,
-            color1:'bg-mountain-meadow',
-            color2:'hover:bg-mountain-meadow',
-            title:'Certified Copy of ROR',
-            description:'Certified Copy of ROR',
-            path:'disabled'
-        },
-        {
-            id:4,
-            color1:'bg-gamboge',
-            color2:'hover:bg-gamboge',
-            title:'Land Map Preview',
-            description:'This service is for getting certified copy of digitally signed Land Map on payment basis.',
-            path:'disabled'
-        },
-        {
-            id:5,
-            color1:'bg-carmine-pink',
-            color2:'hover:bg-carmine-pink',
-            title:'RCCMS',
-            description:'Revenue Court Case',
-            path:'disabled'
-        },
-        
-    ]
+      );
+      const apiresponse = await response.json();
+      if (apiresponse?.success) {
+        setServices(apiresponse.data);
+        console.log(services);
+      }
+    } catch (error) {
+      console.error("Error : ", error);
+    }
+  };
+  useEffect(() => {
+    fetchServices();
+  }, []);
   return (
     <>
-        <div className='p-2'>
-            <h6 className='text-xl font-medium text-gray-800'>Available Services:</h6>
-            <div className='my-4 mx-4 flex gap-4 flex-wrap'>  
-
-                {servicesData.map((service) =>(
-                    <ServiceCard 
-                        key={service.id}
-                        bgcolor={service.color1}
-                        hovercolor={service.color2}
-                        title={service.title}
-                        description={service.description}
-                        path={service.path}
-                    />
-                ) )}
-            </div>
+      <div className="p-2">
+        <h6 className="text-xl font-medium text-gray-800">
+          Available Services:
+        </h6>
+        <div className="my-4 mx-4 flex gap-4 flex-wrap">
+          {services.map((service, idx) => (
+            <ServiceCard
+              key={idx}
+              index={idx}
+              title={service.service_name}
+              description={service.service_name_bn}
+              path={service.service_path}
+            />
+          ))}
         </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default AvailableServices
+export default AvailableServices;

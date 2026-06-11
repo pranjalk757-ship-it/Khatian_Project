@@ -47,20 +47,9 @@ const KhatianVerification = ({ setShowReveneuDetails, lgd_village_code }) => {
         lgd_village_code: lgd_village_code,
       };
     } else if (searchBy === "Owner Name") {
-      const nameParts = searchByValue.trim().split(/\s+/);
-      let firstName = "";
-      let lastName = "";
-      if (nameParts.length === 1) {
-        firstName = nameParts[0];
-      } else {
-        lastName = nameParts.pop();
-        firstName = nameParts.join(" ");
-      }
-
       postData = {
         search_by: "owner_name",
-        sfname: firstName,
-        slname: lastName,
+        owner_name: searchByValue.trim(),
         lgd_village_code: lgd_village_code,
       };
     }
