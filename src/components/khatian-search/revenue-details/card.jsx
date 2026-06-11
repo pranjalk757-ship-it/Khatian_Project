@@ -1,7 +1,7 @@
 import React from "react";
 import toast from "react-hot-toast";
 
-const RevenueDetails = (props) => {
+const RevenueDetails = () => {
   const handlePayment = async() => {
     const paymentData = {
       Applicationnumber: "APP1234567890",
@@ -60,7 +60,7 @@ const RevenueDetails = (props) => {
             </div>
             <div className="col-span-1 flex flex-col items-center justify-center border-b border-r border-richblack-200">
               <div>
-                <h1>{props.khatianNumber}</h1>
+                <h1>1000</h1>
               </div>
             </div>
             <div className="col-span-2 flex flex-col w-full">
