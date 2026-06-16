@@ -40,7 +40,7 @@ const AvailableServices = () => {
               key={idx}
               index={idx}
               title={service.service_name}
-              description={service.service_name_bn}
+              description={service.description}
               path={service.service_path}
             />
           ))}

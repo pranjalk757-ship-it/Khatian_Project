@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-const KhatianVerification = ({ setShowReveneuDetails, lgd_village_code }) => {
+const KhatianVerification = ({ setShowReveneuDetails, lgd_village_code , verifiedKhatianList , setVerifiedKhatianList}) => {
   const [isVerified, setIsVerified] = useState(false);
   const [searchByValue, setSearchByValue] = useState("");
   const [searchBy, setSearchBy] = useState("");
+  const [khataianNumber, setKhatianNumber] = useState("")
 
   const searchByOptions = [
     {
@@ -96,6 +97,12 @@ const KhatianVerification = ({ setShowReveneuDetails, lgd_village_code }) => {
     if (!isVerified) {
       return toast.error("Khatian is Not Verified");
     }
+    const newKhatian = {
+      id: crypto.randomUUID(),
+      khatianNumber:"1000",
+      payableAmount:"30"
+    }
+    setVerifiedKhatianList([...verifiedKhatianList, newKhatian]);
     setShowReveneuDetails(true);
   };
 

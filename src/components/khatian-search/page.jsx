@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import CitizenDetails from "./citizen-details/citizen";
 import RevenueDetails from "./revenue-details/card";
@@ -9,7 +9,12 @@ function Khatian_search() {
   const { handleSubmit } = useForm();
   const [showSearch, setShowSearch] = useState(false);
   const [showReveneuDetails, setShowReveneuDetails] = useState(false);
-  const [lgd_village_code, setLgd_village_code] = useState("922855");
+  const [lgd_village_code, setLgd_village_code] = useState();
+  const [verifiedKhatianList, setVerifiedKhatianList] = useState([])
+
+  // useEffect(()=>{
+  //   console.log(verifiedKhatianList)
+  // }, [verifiedKhatianList])
 
   const submitHandler = (data) => {};
 
@@ -25,10 +30,15 @@ function Khatian_search() {
           setLgd_village_code={setLgd_village_code}
         />
         {showSearch && (
-          <KhatianVerification setShowReveneuDetails={setShowReveneuDetails} lgd_village_code={lgd_village_code} />
+          <KhatianVerification
+            setShowReveneuDetails={setShowReveneuDetails}
+            lgd_village_code={lgd_village_code}
+            verifiedKhatianList={verifiedKhatianList}
+            setVerifiedKhatianList={setVerifiedKhatianList}
+          />
         )}
       </form>
-      {showReveneuDetails && <RevenueDetails />}
+      {showReveneuDetails && <RevenueDetails verifiedKhatianList={verifiedKhatianList} setVerifiedKhatianList={setVerifiedKhatianList}/>}
     </div>
   );
 }

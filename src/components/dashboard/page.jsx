@@ -9,7 +9,7 @@ function Dashboard() {
         <div className="h-[calc(100vh-5rem)] bg-richblue-300 w-[15rem] flex-shrink-0">
           <Sidebar />
         </div>
-        <div className="flex-1 w-full h-[calc(100vh-5rem)] overflow-y-auto p-4">
+        <div className="flex-1 w-full h-[calc(100vh-5rem)] overflow-y-auto [scrollbar-width:none] p-4">
           <Outlet />
         </div>
       </div>

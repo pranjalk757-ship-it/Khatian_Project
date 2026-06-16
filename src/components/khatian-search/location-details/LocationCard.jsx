@@ -102,6 +102,11 @@ const LocationCard = ({ setShowSearch, setShowReveneuDetails, setLgd_village_cod
     setShowReveneuDetails(false);
   };
 
+  const handleVillageCode = (e) =>{
+    // console.log(e.target.value)
+    setLgd_village_code(e.target.value)
+  }
+
   return (
     <div>
       <div className="bg-steal-blue px-6 rounded-t-[4px] py-3 text-white font-bold text-xl">
@@ -212,10 +217,13 @@ const LocationCard = ({ setShowSearch, setShowReveneuDetails, setLgd_village_cod
             name="mouja"
             id="mouja"
             className="bg-richblack-25 px-4 py-2 rounded-md text-richblack-300"
+            onChange={handleVillageCode}
           >
             {villageList.length > 0 && <option value="">--select--</option>}
             {villageList.map((village) => (
-              <option key={village.code} value={village.code}>
+              <option key={village.code} value={village.code}
+                onSelect={handleVillageCode}
+              >
                 {village.name_eng}
               </option>
             ))}

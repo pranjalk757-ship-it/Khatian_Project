@@ -37,6 +37,16 @@ function Sidebar() {
         },
         {
             id: 3,
+            name: "Application Status",
+            path: "/dashboard/applications",
+        },
+        {
+            id: 4,
+            name: "Download Certified Copy",
+            path: "/dashboard/download",
+        },
+        {
+            id: 5,
             name: "Login/ Sign up",
             path: "/login",
         },
